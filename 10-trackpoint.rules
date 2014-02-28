@@ -1,0 +1,10 @@
+# for serio interface, this is where we config for sensitivity...etc.
+KERNEL!="serio[0-9]*", GOTO="trackpoint_serio_end"
+SUBSYSTEM=="serio", ATTR{protocol}=="TPPS/2", ATTR{sensitivity}="152", ATTR{speed}="152", ATTR{inertia}="6"
+LABEL="trackpoint_serio_end"
+
+# for event interface, this will be in xorg.conf
+KERNEL!="event[0-9]*", GOTO="trackpoint_ev_end"
+ATTRS{name}=="TPPS/2 IBM TrackPoint", SYMLINK+="input/trackpoint"
+LABEL="trackpoint_ev_end"
+
